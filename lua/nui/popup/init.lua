@@ -237,7 +237,7 @@ function Popup:_close_window()
   self.winid = nil
 end
 
-function Popup:mount()
+function Popup:mount(bufnr)
   if self.popup_state.loading or self.popup_state.mounted then
     return
   end
@@ -246,7 +246,8 @@ function Popup:mount()
 
   self.border:mount()
 
-  self.bufnr = vim.api.nvim_create_buf(false, true)
+  --self.bufnr = vim.api.nvim_create_buf(false, true)
+  self.bufnr = bufnr
   assert(self.bufnr, "failed to create buffer")
 
   _.set_buf_options(self.bufnr, self.buf_options)
